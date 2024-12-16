@@ -4,10 +4,10 @@
       <!-- this is the main content section for my portfolio -->
        <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-black/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-lg items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
         <div>
-          <h1 class="text-3xl font-thin">{{ greeting() }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
+          <h1 class="text-3xl font-thin">{{ greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
           <!-- <p class="text-xl font-general font-light">I'm a web developer and designer from the UK.</p> -->
         </div>
-        <NuxtImg src="https://files.shroomery.org/avatars/shroomery/227923a1389143332-big.png" alt="grid" class="rounded-full h-72 w-72" />
+        <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full h-72 w-72" />
        </div>
     </div>
   </div>
@@ -50,8 +50,7 @@ const greetings = [
   { language: "Czech", greeting: "Ahoj" },
   { language: "Hungarian", greeting: "Szia" },
 ];
-
-const greeting = () => {return greetings[Math.floor(Math.random() * greetings.length)].greeting}
+const greeting = ref(greetings[Math.random() * greetings.length | 0].greeting);
 
 
 const svgGridStyle = computed(() => ({

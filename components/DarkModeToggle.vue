@@ -3,8 +3,8 @@
     @click="toggleDarkMode"
     class="p-2 rounded"
   >
-    <span v-if="isDark">🌙</span>
-    <span v-else>🔆</span>
+    <span v-if="isDark"><Icon mode="svg" name="line-md:moon-twotone-loop"/></span>
+    <span v-else><Icon mode="svg" name="line-md:sun-rising-twotone-loop" /></span>
   </button>
 </template>
 
