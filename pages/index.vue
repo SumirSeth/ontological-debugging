@@ -7,7 +7,7 @@
           <h1 class="text-3xl font-thin">{{ greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
           <!-- <p class="text-xl font-general font-light">I'm a web developer and designer from the UK.</p> -->
         </div>
-        <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full h-72 w-72" />
+        <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full md:h-72 md:w-72 w-40 h-40" />
        </div>
     </div>
   </div>
