@@ -6,9 +6,17 @@
       <NuxtLink to="/services" class="text-2xl z-20 bg-transparent">Services</NuxtLink>
     </div> -->
 
-    <nav v-if="elementVisible" class="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-center">
+    <nav v-if="elementVisible" class="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-center transition ease-in-out delay-150">
       <div class="bg-black/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-lg flex items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
-        <div class="2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-general font-light dark:text-white flex flex-row gap-2"><NuxtImg src="fav.webp" alt="site logo" class="rounded-full w-10 h-10" /><NuxtLink to="/">ontological-debugging</NuxtLink></div>
+        <div class="2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-general font-light dark:text-white flex flex-row gap-2">
+          <div class="flex flex-row items-center gap-2">
+            <NuxtImg src="fav.webp" alt="site logo" class="rounded-full w-10 h-10" />
+            <TransitionGroup appear name="fade">
+              <NuxtLink to="/" v-if="showFullTitle">ontological-debugging</NuxtLink>
+              <NuxtLink to="/" v-if="showShortTitle">sumset</NuxtLink>
+            </TransitionGroup>
+          </div>
+        </div>
         <ul class="flex lg:space-x-6 space-x-4 font-general-italic font-normal dark:text-white items-center 2xl:text-lg xl:text-lg lg:text-base md:text-base sm:text-sm text-sm ">
           <li><NuxtLink to="/services" class="italic">work</NuxtLink></li>
           <li><NuxtLink to="/about" class="italic">about</NuxtLink></li>
@@ -24,10 +32,24 @@
 
 <script lang="ts" setup>
 
-// const elementVisible = useVisibilityState()
+// logic for changing the title
+const showFullTitle = ref(true)
+const showShortTitle = ref(false)
+
+onMounted(() => {
+  setTimeout(() => {
+    showFullTitle.value = false
+  }, 5000)
+  setTimeout(() => {
+    showShortTitle.value = true
+  }, 5500)
+})
+
+
 const { isDark, toggleDarkMode, isDarkMode } = useDarkMode();
 const animationPreference = ref(true);
 const elementVisible = ref(true)
+// svg logic
 const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7));
 const strokeColor = computed(() => (isDark.value ? 'fff' : '000'));
 const svgGridStyleAnimated = computed(() => ({
@@ -40,6 +62,15 @@ const svgGridStyle = computed(() => ({
 
 </script>
 
-<style>
 
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

@@ -69,17 +69,6 @@ onMounted(() => {
     changeGreeting();
   }, 5000);
 });
-
-// svg logic
-const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7));
-const strokeColor = computed(() => (isDark.value ? 'fff' : '000'));
-const svgGridStyleAnimated = computed(() => ({
-  backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
-  animation: 'moveBackground 10s linear infinite',
-}));
-const svgGridStyle = computed(() => ({
-  backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
-}));
 </script>
 
 <style>
