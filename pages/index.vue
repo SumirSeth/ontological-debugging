@@ -1,12 +1,16 @@
 <template>
   <div class="h-screen">
-    <div class="flex items-center justify-center h-screen" :style="svgGridStyle">
+    <div class="flex items-center justify-center h-screen" :style="animationPreference?svgGridStyleAnimated:svgGridStyle">
+      <p @click="animationPreference = animationPreference? false : true" class="dark:text-white text-black absolute bottom-0 right-0 lg:p-4 p-2 dark:opacity-20 opacity-55 cursor-cell hover:opacity-90 dark:hover:opacity-90">Turn {{ animationPreference? "off":"on" }} animation</p>
       <!-- this is the main content section for my portfolio -->
        <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-white/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-2xl shadow-black/65 dark:shadow-white/5 items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
         <div>
-          <h1 class="text-3xl font-thin">{{ greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
-
-          <!-- <p class="text-xl font-general font-light">I'm a web developer and designer from the UK.</p> -->
+          <LazyClientOnly>
+            <Transition name="fade">
+              <h1 v-if="showGreeting" class="text-3xl font-thin">{{ greeting.greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
+            </Transition>
+              <sub class="italic font-thin tracking-wide -inset-y-2">({{ greeting.language.toLowerCase() }})</sub>
+          </LazyClientOnly>
         </div>
         <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full md:h-72 md:w-72 w-40 h-40" />
        </div>
@@ -16,9 +20,11 @@
 
 <script lang="ts" setup>
 const { isDark, toggleDarkMode, isDarkMode } = useDarkMode();
-const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7))
-const strokeColor = computed(() => (isDark.value ? 'fff' : '000'))
+const animationPreference = ref(true)
 
+
+// greetings logic
+const showGreeting = ref(true);
 const greetings = [
   { language: "English", greeting: "Hello" },
   { language: "Spanish", greeting: "Hola" },
@@ -51,16 +57,59 @@ const greetings = [
   { language: "Czech", greeting: "Ahoj" },
   { language: "Hungarian", greeting: "Szia" },
 ];
-const greeting = ref(greetings[Math.random() * greetings.length | 0].greeting);
+const greeting = ref(greetings[Math.random() * greetings.length | 0]);
+const changeGreeting = () => {
+  showGreeting.value = false;
+  setTimeout(() => {
+    greeting.value = greetings[Math.random() * greetings.length | 0];
+    showGreeting.value = true;
+  }, 100);
+};
 
+onMounted(() => {
+  setInterval(() => {
+    changeGreeting();
+  }, 5000);
+});
 
+// svg logic
+const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7))
+const strokeColor = computed(() => (isDark.value ? 'fff' : '000'))
+const svgGridStyleAnimated = computed(() => ({
+  backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
+  animation: 'moveBackground 10s linear infinite',
+}))
 const svgGridStyle = computed(() => ({
   backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
 }))
+
 </script>
 
 <style>
 html {
-  scroll-behavior: smooth;
+  scroll-behavior:smooth;
 }
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position:  100px 100px;
+  }
+}
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;}
 </style>
