@@ -1,27 +1,25 @@
 <template>
-  <div class="h-screen">
-    <div class="flex items-center justify-center h-screen" :style="animationPreference?svgGridStyleAnimated:svgGridStyle">
-      <p @click="animationPreference = animationPreference? false : true" class="dark:text-white text-black absolute bottom-0 right-0 lg:p-4 p-2 dark:opacity-20 opacity-55 cursor-cell hover:opacity-90 dark:hover:opacity-90">Turn {{ animationPreference? "off":"on" }} animation</p>
+  <Title>ontological-debuggin: sumir</Title>
+  <div class="min-h-screen">
+    <div class="flex items-center justify-center h-screen">
       <!-- this is the main content section for my portfolio -->
-       <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-white/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-2xl shadow-black/65 dark:shadow-white/5 items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
+      <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-2xl shadow-black/65 dark:shadow-white/5 items-center lg:space-x-4 space-x-2 lg:px-4 px-2 py-2 rounded-2xl max-w-max">
         <div>
           <LazyClientOnly>
             <Transition name="fade">
               <h1 v-if="showGreeting" class="text-3xl font-thin">{{ greeting.greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
             </Transition>
-              <sub class="italic font-thin tracking-wide -inset-y-2">({{ greeting.language.toLowerCase() }})</sub>
+            <sub class="italic font-thin tracking-wide -inset-y-2">({{ greeting.language.toLowerCase() }})</sub>
           </LazyClientOnly>
         </div>
         <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full md:h-72 md:w-72 w-40 h-40" />
-       </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const { isDark, toggleDarkMode, isDarkMode } = useDarkMode();
-const animationPreference = ref(true)
-
 
 // greetings logic
 const showGreeting = ref(true);
@@ -73,28 +71,27 @@ onMounted(() => {
 });
 
 // svg logic
-const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7))
-const strokeColor = computed(() => (isDark.value ? 'fff' : '000'))
+const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7));
+const strokeColor = computed(() => (isDark.value ? 'fff' : '000'));
 const svgGridStyleAnimated = computed(() => ({
   backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
   animation: 'moveBackground 10s linear infinite',
-}))
+}));
 const svgGridStyle = computed(() => ({
   backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
-}))
-
+}));
 </script>
 
 <style>
 html {
-  scroll-behavior:smooth;
+  scroll-behavior: smooth;
 }
 @keyframes moveBackground {
   0% {
     background-position: 0 0;
   }
   100% {
-    background-position:  100px 100px;
+    background-position: 100px 100px;
   }
 }
 /* we will explain what these classes do next! */
@@ -111,5 +108,6 @@ html {
   transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0;}
+  opacity: 0;
+}
 </style>

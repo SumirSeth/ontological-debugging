@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-black"> 
+  <div class="bg-white dark:bg-black" :style="animationPreference ? svgGridStyleAnimated : svgGridStyle"> 
 
     <!-- <div v-if="show" class="flex flex-row justify-evenly items-center dark:bg-amber-900 dark:text-white bg-amber-200 font-general font-thin">
       <NuxtLink to="/" class="text-2xl z-20 bg-transparent">PawPlus</NuxtLink>
@@ -18,13 +18,25 @@
       </div>
     </nav>
     <slot />
+    <p @click="animationPreference = animationPreference ? false : true" class="dark:text-white text-black absolute bottom-0 right-0 lg:p-4 p-2 lg:text-base sm:text-xs text-xs dark:opacity-20 opacity-55 cursor-cell hover:opacity-90 dark:hover:opacity-90">Turn {{ animationPreference ? "off" : "on" }} animation</p>
   </div>
 </template>
 
 <script lang="ts" setup>
 
 // const elementVisible = useVisibilityState()
+const { isDark, toggleDarkMode, isDarkMode } = useDarkMode();
+const animationPreference = ref(true);
 const elementVisible = ref(true)
+const strokeWidth = computed(() => (isDark.value ? 0.4 : 0.7));
+const strokeColor = computed(() => (isDark.value ? 'fff' : '000'));
+const svgGridStyleAnimated = computed(() => ({
+  backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
+  animation: 'moveBackground 10s linear infinite',
+}));
+const svgGridStyle = computed(() => ({
+  backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 30 10 L 3 0 10 30" fill="none" stroke="%23${strokeColor.value}" opacity="0.5" stroke-width="${strokeWidth.value}"/></svg>')`,
+}));
 
 </script>
 
