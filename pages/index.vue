@@ -2,9 +2,10 @@
   <div class="h-screen">
     <div class="flex items-center justify-center h-screen" :style="svgGridStyle">
       <!-- this is the main content section for my portfolio -->
-       <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-black/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-lg items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
+       <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-white/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-2xl shadow-black/65 dark:shadow-white/5 items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
         <div>
           <h1 class="text-3xl font-thin">{{ greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
+
           <!-- <p class="text-xl font-general font-light">I'm a web developer and designer from the UK.</p> -->
         </div>
         <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full md:h-72 md:w-72 w-40 h-40" />
