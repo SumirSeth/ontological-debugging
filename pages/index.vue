@@ -1,18 +1,17 @@
 <template>
-  <Title>ontological-debuggin: sumir</Title>
   <div class="min-h-screen">
     <div class="flex items-center justify-center h-screen">
       <!-- this is the main content section for my portfolio -->
-      <div class="main-content grid grid-cols-2 gap-5 dark:text-white bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-2xl shadow-black/65 dark:shadow-white/5 items-center lg:space-x-4 space-x-2 lg:px-4 px-2 py-2 rounded-2xl max-w-max">
+      <div class="main-content-card grid grid-cols-2 lg:gap-5 gap-3 dark:text-white bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-2xl shadow-black/65 dark:shadow-white/5 items-center 2xl:space-x-10 xl:space-x-8 lg:space-x-6 md:space-x-4 space-x-2 lg:px-4 px-2 2xl:py-12 lg:py-8 md:py-6 sm:py-3 rounded-3xl max-w-max">
         <div>
           <LazyClientOnly>
             <Transition name="fade">
-              <h1 v-if="showGreeting" class="text-3xl font-thin">{{ greeting.greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
+              <h1 v-if="showGreeting" class="2xl:text-6xl xl:text-5xl lg:text-3xl text-2xl font-thin">{{ greeting.greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
             </Transition>
-            <sub class="italic font-thin tracking-wide -inset-y-2">({{ greeting.language.toLowerCase() }})</sub>
+            <sub class="italic font-thin text-xs tracking-wide -inset-y-2">({{ greeting.language.toLowerCase() }})</sub>
           </LazyClientOnly>
         </div>
-        <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full md:h-72 md:w-72 w-40 h-40" />
+        <NuxtImg src="avatar.jpg" alt="grid" class="rounded-full 2xl:w-96 2xl:h-96 xl:w-80 xl:h-80 md:h-72 md:w-72 w-40 h-40" />
       </div>
     </div>
   </div>
