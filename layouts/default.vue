@@ -29,7 +29,7 @@
       </div>
     </nav>
     <slot />
-    <p @click="animationPreference = animationPreference ? false : true" class="dark:text-white text-black absolute bottom-0 right-0 lg:p-4 p-2 lg:text-base sm:text-xs text-xs dark:opacity-20 opacity-55 cursor-cell hover:opacity-90 dark:hover:opacity-90">Turn {{ animationPreference ? "off" : "on" }} animation</p>
+    <p @click="animationPreference = animationPreference ? false : true" class="dark:text-white text-black fixed bottom-0 right-0 lg:p-4 p-2 lg:text-base sm:text-xs text-xs dark:opacity-20 opacity-55 cursor-cell hover:opacity-90 dark:hover:opacity-90">Turn {{ animationPreference ? "off" : "on" }} animation</p>
   </div>
 </template>
 
