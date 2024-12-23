@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-black" :style="animationPreference ? svgGridStyleAnimated : svgGridStyle"> 
+  <div :key="pageKey" class="bg-white dark:bg-black" :style="animationPreference ? svgGridStyleAnimated : svgGridStyle"> 
 
     <!-- <div v-if="show" class="flex flex-row justify-evenly items-center dark:bg-amber-900 dark:text-white bg-amber-200 font-general font-thin">
       <NuxtLink to="/" class="text-2xl z-20 bg-transparent">PawPlus</NuxtLink>
@@ -7,7 +7,7 @@
     </div> -->
 
     <nav v-if="elementVisible" class="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-center transition ease-in-out delay-150">
-      <div class="bg-black/5 dark:bg-white/5 backdrop-brightness-110 backdrop-blur-xl shadow-lg flex items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
+      <div class="bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-xl flex items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
         <div class="2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-general font-light dark:text-white flex flex-row gap-2">
           <div class="flex flex-row items-center gap-2">
             <NuxtImg src="fav.webp" alt="site logo" class="rounded-full w-10 h-10" />
@@ -21,7 +21,10 @@
           <li><NuxtLink to="/services" class="italic">work</NuxtLink></li>
           <li><NuxtLink to="/about" class="italic">about</NuxtLink></li>
           <li><NuxtLink to="/contact" class="italic">contact</NuxtLink></li>
-          <li><DarkModeToggle/></li>
+          <button @click="toggleDarkMode" class="p-2 rounded">
+            <span v-if="isDark"><Icon mode="svg" name="line-md:moon-twotone-loop"/></span>
+            <span v-else><Icon mode="svg" name="line-md:sun-rising-twotone-loop" /></span>
+          </button>
         </ul>
       </div>
     </nav>
@@ -31,6 +34,11 @@
 </template>
 
 <script lang="ts" setup>
+
+const pageKey = ref(0)
+const forceRender = () => {
+  pageKey.value++
+}
 
 // logic for changing the title
 const showFullTitle = ref(true)
