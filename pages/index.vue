@@ -2,7 +2,7 @@
   <div class="min-h-screen">
     <div class="flex items-center justify-center h-screen">
       <!-- this is the main content section for my portfolio -->
-      <div class="main-content-card grid grid-cols-2 lg:gap-5 gap-3 dark:text-white bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-2xl shadow-black/65 dark:shadow-white/5 items-center 2xl:space-x-10 xl:space-x-8 lg:space-x-6 md:space-x-4 space-x-2 lg:px-4 px-2 2xl:py-12 lg:py-8 md:py-6 sm:py-3 rounded-3xl max-w-max">
+      <div class="main-content-card grid grid-cols-2 justify-items-center lg:gap-5 gap-3 dark:text-white bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-2xl shadow-black/65 dark:shadow-white/10 items-center 2xl:space-x-10 xl:space-x-8 lg:space-x-6 md:space-x-4 space-x-2 lg:px-4 px-2 2xl:py-12 lg:py-8 md:py-6 sm:py-3 rounded-3xl max-w-max m-6">
         <div>
           <LazyClientOnly>
             <Transition appear name="fade">
