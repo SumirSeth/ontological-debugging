@@ -2,12 +2,12 @@
 export default {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        custom: ['Satoshi']
+      }
+    },
   },
   plugins: [],
   darkMode: 'class',
-}
-
-module.exports = {
-  darkMode : 'class',
 }

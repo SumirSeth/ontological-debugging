@@ -6,7 +6,7 @@
         <div>
           <LazyClientOnly>
             <Transition appear name="fade">
-              <h1 v-if="showGreeting" class="2xl:text-5xl xl:text-4xl lg:text-3xl text-2xl font-thin">{{ greeting.greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
+              <h1 v-if="showGreeting" class="2xl:text-5xl xl:text-4xl lg:text-3xl text-2xl font-thin font-['Satoshi']">{{ greeting.greeting }}, I'm <span class="text-teal-500">Sumir</span>.</h1>
             </Transition>
             <sub class="italic font-thin text-xs tracking-wide -inset-y-2">({{ greeting.language.toLowerCase() }})</sub>
             <p class="font-thin">ontological: relating to the branch of metaphysics dealing with the nature of being.</p>
