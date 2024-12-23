@@ -7,7 +7,7 @@
     </div> -->
 
     <nav v-if="elementVisible" class="font-['Satoshi'] fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-center transition ease-in-out delay-150">
-      <Motion as="div" :initial="{ scale: 0, rotate:0 }" :animate="{ rotate: 0, scale: 1 }" :transition="{type: 'spring', stiffness: 200, damping: 20, delay: 0.4}" class="bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-xl flex items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
+      <Motion as="div" :initial="{ scale: 0, rotate:0 }" :animate="{ rotate: 0, scale: 1 }" :transition="{type: 'spring', stiffness: 150, damping: 40, delay: 0.9}" class="bg-black/10 dark:bg-white/5 backdrop-brightness-100 backdrop-blur-sm shadow-xl flex items-center lg:space-x-6 space-x-4 lg:px-6 px-4 py-2 rounded-2xl max-w-max">
         <div class="2xl:text-2xl xl:text-2xl lg:text-xl md:text-xl sm:text-lg text-lg font-thin dark:text-white flex flex-row gap-2">
           <div class="flex flex-row items-center gap-2">
             <NuxtImg src="fav.webp" alt="site logo" class="rounded-full w-10 h-10" />
