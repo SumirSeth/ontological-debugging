@@ -1,5 +1,5 @@
 <template>
-  <div :key="pageKey" class="bg-white dark:bg-black" :style="animationPreference ? svgGridStyleAnimated : svgGridStyle"> 
+  <div class="bg-white dark:bg-black" :style="animationPreference ? svgGridStyleAnimated : svgGridStyle"> 
 
     <!-- <div v-if="show" class="flex flex-row justify-evenly items-center dark:bg-amber-900 dark:text-white bg-amber-200 font-general font-thin">
       <NuxtLink to="/" class="text-2xl z-20 bg-transparent">PawPlus</NuxtLink>
@@ -35,10 +35,6 @@
 
 <script lang="ts" setup>
 
-const pageKey = ref(0)
-const forceRender = () => {
-  pageKey.value++
-}
 
 // logic for changing the title
 const showFullTitle = ref(true)
